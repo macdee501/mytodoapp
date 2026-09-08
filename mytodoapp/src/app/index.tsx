@@ -1,14 +1,67 @@
-import { Link } from "expo-router";
-import { useState } from "react";
+import { account } from "@/lib/appwrite";
+import { Link, router } from "expo-router";
+import { useEffect, useState } from "react";
 import { Text, View, StyleSheet, TextInput, TouchableOpacity } from "react-native";
+import { Models } from "react-native-appwrite";
 
 export default function HomeScreen() {
   // Creates temporary memory to be used later
   const [task, setTask] =useState("")
+
+  const [user,setUser] = useState<Models.User<Models.Preferences>| null>(null);
+
+  const [loading,setLoading]= useState(true);
+
+  // useEffect runs concurrently whn screen screen opes to check user is logged in or not
+  useEffect(()=>{
+    checkUser();
+  },[]);
+
+  async function checkUser()
+  {
+    try{
+      const currentUser = await account.get();
+
+      setUser(currentUser);
+
+    }catch(error)
+    {
+      router.replace("/login");
+    }
+    finally{
+      setLoading(false)
+    }
+  }
+
+  async function logout() {
+    try{
+      await account.deleteSession({
+        sessionId:"current",
+
+      });
+
+      router.replace("/login");
+    }
+    catch(error)
+    {
+      console.log("Log  out error:",error);
+    }
+    
+  }
+
+  if(loading)
+  {
+    return(
+      <View>
+        <Text>Loading....</Text>
+      </View>
+    )
+  }
   return (
     // Controls what you see on screen, its like a fragment
     <View style={styles.container}>
       {/* Text is the tag for texts */}
+      <Text>Welcome {user?.name}</Text>
       <Text style={styles.title}>
             My Tasks
       </Text>
@@ -27,6 +80,12 @@ export default function HomeScreen() {
       <Link href="/register">
       Create Account
       </Link>
+
+      <TouchableOpacity onPress={logout}>
+        <Text>
+          Logout
+        </Text>
+      </TouchableOpacity>
     </View>
     
   );
