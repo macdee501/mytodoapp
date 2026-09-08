@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 
 import { ID } from 'react-native-appwrite';
 import { account } from '@/lib/appwrite';
+import { Link } from 'expo-router';
 
 export default function register() {
 
@@ -63,6 +64,9 @@ export default function register() {
             Register
         </Text>
       </TouchableOpacity>
+      <Link href="/login">
+      Already  have an account? Login
+      </Link>
     </View>
   )
 }
