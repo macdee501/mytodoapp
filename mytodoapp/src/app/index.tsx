@@ -1,3 +1,4 @@
+import { Link } from "expo-router";
 import { useState } from "react";
 import { Text, View, StyleSheet, TextInput, TouchableOpacity } from "react-native";
 
@@ -23,6 +24,9 @@ export default function HomeScreen() {
       {/* <Text style={styles.subtitle}>
         I have no taskks yet
       </Text> */}
+      <Link href="/register">
+      Create Account
+      </Link>
     </View>
     
   );
