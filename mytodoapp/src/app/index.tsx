@@ -208,6 +208,9 @@ export default function HomeScreen() {
           Add Task
         </Text>
       </TouchableOpacity>
+      <TouchableOpacity onPress={() => router.push("/tasks")}>
+          <Text>View My Tasks</Text>
+      </TouchableOpacity>
 
       {/* Temporary preview showing what is currently being typed. */}
       <Text style={styles.preview}>
