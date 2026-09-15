@@ -42,6 +42,26 @@ export default function tasksScreen() {
     }
   }
 
+  async function updateTask(taskId:string,currentStatus:boolean) {
+    try{
+      await tablesDB.updateRow({
+        databaseId:DATABASE_ID,
+        tableId:TASKS_TABLE_ID,
+        rowId:taskId,
+        data:{
+          completed:!currentStatus,
+        }
+      });
+
+      await loadTasks();
+    }
+    catch(error)
+    {
+      console.log("Update task error:",error);
+    }
+    
+  }
+
   /**
    * Display a temporary message while Appwrite loads the data.
    */
@@ -63,6 +83,16 @@ export default function tasksScreen() {
         tasks.map((item) => (
           <View key={item.$id}>
             <Text>{item.title}</Text>
+            <Text>
+              {item.completed ? "Completed" : "Not completed"}
+            </Text>
+            <Button
+      title={item.completed ? "Mark Incomplete" : "Mark Complete"}
+      onPress={() =>
+        updateTask(item.$id, item.completed)
+      }
+    />
+
           </View>
         ))
       )}
