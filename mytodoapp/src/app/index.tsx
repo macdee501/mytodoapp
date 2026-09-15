@@ -178,105 +178,165 @@ export default function HomeScreen() {
     );
   }
 
-  return (
-    <View style={styles.container}>
-      {/* Display the logged-in user's name. */}
-      <Text>Welcome {user?.name}</Text>
+ return (
+  <View style={styles.container}>
+    <View>
+      <Text style={styles.welcome}>
+        Welcome, {user?.name}
+      </Text>
 
       <Text style={styles.title}>
         My Tasks
       </Text>
 
       <Text style={styles.subtitle}>
-        What needs doing?
+        What needs doing today?
       </Text>
 
-      {/* Input used to enter a new task title. */}
       <TextInput
         style={styles.input}
-        placeholder="Enter a task"
+        placeholder="Enter a task..."
+        placeholderTextColor="#9CA3AF"
         value={task}
         onChangeText={setTask}
       />
 
-      {/* Creates a task using the value stored in `task`. */}
       <TouchableOpacity
-        style={styles.button}
+        style={styles.addButton}
         onPress={createTask}
+        activeOpacity={0.8}
       >
-        <Text style={styles.buttonText}>
-          Add Task
+        <Text style={styles.addButtonText}>
+          + Add Task
         </Text>
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => router.push("/tasks")}>
-          <Text>View My Tasks</Text>
-      </TouchableOpacity>
 
-      {/* Temporary preview showing what is currently being typed. */}
-      <Text style={styles.preview}>
-        {task}
-      </Text>
-
-      {/* Ends the current Appwrite session. */}
-      <TouchableOpacity onPress={logout}>
-        <Text>Logout</Text>
+      <TouchableOpacity
+        style={styles.tasksButton}
+        onPress={() => router.push("/tasks")}
+        activeOpacity={0.8}
+      >
+        <Text style={styles.tasksButtonText}>
+          View My Tasks
+        </Text>
       </TouchableOpacity>
     </View>
-  );
+
+    <TouchableOpacity
+      style={styles.logoutButton}
+      onPress={logout}
+    >
+      <Text style={styles.logoutText}>
+        Logout
+      </Text>
+    </TouchableOpacity>
+  </View>
+);
 }
 
-/**
- * Styles used only by this screen.
- *
- * We can replace or improve these later when we begin
- * the dedicated UI/styling phase of the project.
- */
 const styles = StyleSheet.create({
+  /**
+   * Main screen container.
+   */
   container: {
-    // Fill all available screen space.
     flex: 1,
-
-    // Add space between the content and screen edges.
-    padding: 24,
-
-    // Position the screen content vertically in the center.
-    justifyContent: "center",
+    backgroundColor: "#F5F7FA",
+    paddingHorizontal: 24,
+    paddingTop: 80,
+    paddingBottom: 30,
   },
 
+  /**
+   * Small greeting displayed above the page title.
+   */
+  welcome: {
+    fontSize: 16,
+    color: "#6B7280",
+    marginBottom: 6,
+  },
+
+  /**
+   * Main heading.
+   */
   title: {
-    fontSize: 32,
+    fontSize: 36,
     fontWeight: "bold",
+    color: "#111827",
   },
 
+  /**
+   * Supporting text underneath the title.
+   */
   subtitle: {
     fontSize: 16,
-    marginTop: 8,
+    color: "#6B7280",
+    marginTop: 6,
+    marginBottom: 28,
   },
 
+  /**
+   * Input used to enter a new task.
+   */
   input: {
+    backgroundColor: "#FFFFFF",
     borderWidth: 1,
-    borderColor: "#cccccc",
-    borderRadius: 10,
-    padding: 14,
+    borderColor: "#E5E7EB",
+    borderRadius: 12,
+    paddingHorizontal: 16,
+    paddingVertical: 15,
     fontSize: 16,
+    color: "#111827",
   },
 
-  button: {
-    backgroundColor: "#111111",
-    padding: 14,
-    borderRadius: 10,
-    marginTop: 12,
+  /**
+   * Main action button used to create a task.
+   */
+  addButton: {
+    backgroundColor: "#2563EB",
+    borderRadius: 12,
+    paddingVertical: 16,
     alignItems: "center",
+    marginTop: 14,
   },
 
-  buttonText: {
-    color: "#ffffff",
+  addButtonText: {
+    color: "#FFFFFF",
     fontSize: 16,
-    fontWeight: "bold",
+    fontWeight: "600",
   },
 
-  preview: {
-    marginTop: 20,
-    fontSize: 18,
+  /**
+   * Secondary button used to open the task list.
+   */
+  tasksButton: {
+    backgroundColor: "#FFFFFF",
+    borderWidth: 1,
+    borderColor: "#2563EB",
+    borderRadius: 12,
+    paddingVertical: 16,
+    alignItems: "center",
+    marginTop: 12,
+  },
+
+  tasksButtonText: {
+    color: "#2563EB",
+    fontSize: 16,
+    fontWeight: "600",
+  },
+
+  /**
+   * Pushes the logout option toward the bottom
+   * of the screen.
+   */
+  logoutButton: {
+    marginTop: "auto",
+    alignItems: "center",
+    paddingVertical: 14,
+  },
+
+  logoutText: {
+    color: "#DC2626",
+    fontSize: 16,
+    fontWeight: "500",
   },
 });
