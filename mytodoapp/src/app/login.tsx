@@ -1,4 +1,4 @@
-import { View, Text, TextInput, TouchableOpacity } from 'react-native'
+import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native'
 import React, { useState } from 'react'
 import { account } from '@/lib/appwrite';
 import { Link, router } from 'expo-router';
@@ -33,21 +33,102 @@ export default function LoginScreen() {
         }
     }
   return (
-    <View>
-      <Text>login</Text>
-      <TextInput placeholder='Email'value={email} onChangeText={setEmail} autoCapitalize='none' keyboardType='email-address'/>
-      <TextInput placeholder='Password' value={password} onChangeText={setPassword} secureTextEntry/>
+    <View style={styles.container}>
+        {/* Header */}
+        <View style={styles.header}>
+            <Text style={styles.title}>
+                Welcome Back
+            </Text>
+            <Text style={styles.subtitle}>Sign in to continue to your tasks</Text>
 
-      <TouchableOpacity onPress={login}>
-        <Text>
-            Login Screen
+        </View>
+
+        {/* Login Form */}
+        <View style={styles.form}>
+
+      <TextInput placeholder='Email'value={email} onChangeText={setEmail} autoCapitalize='none' keyboardType='email-address' style={styles.input}/>
+      <TextInput placeholder='Password' value={password} onChangeText={setPassword} secureTextEntry style={styles.input}/>
+
+      <TouchableOpacity 
+      onPress={login} 
+      style={styles.loginButton}>
+        <Text style={styles.loginButtonText}>
+            Login 
         </Text>
       </TouchableOpacity>
-      {message ?<Text>{message}</Text>:null}
+      {message ?<Text style={styles.ErrorText}>{message}</Text>:null}
 
-      <Link href="/register">
+      <Link href="/register" style={styles.registerText}>
             Don't have an account?Register
             </Link>
+        </View>
+
     </View>
   )
 }
+
+const styles = StyleSheet.create({
+
+    container:{
+        flex:1,
+        backgroundColor:"#F5F7FA",
+        paddingHorizontal:24,
+        justifyContent:"center"
+    },
+    header:{
+        marginBottom:32
+    },
+    title:{
+        fontSize:36,
+        color:"#111827",
+        fontWeight:"bold",
+    },
+    subtitle:{
+        fontSize:16,
+        color:"#6B7280",
+        marginTop:8
+    },
+    form:{
+        width:"100%",
+    },
+    input:{
+        backgroundColor:"#FFFFFF",
+        borderWidth:1,
+        borderColor:"#E5E7EB",
+        borderRadius:12,
+        paddingHorizontal:16,
+        paddingVertical:15,
+        fontSize:16,
+        color:"#111827",
+
+    },
+    loginButton:{
+         backgroundColor: "#111827",
+    borderRadius: 12,
+    paddingVertical: 16,
+    alignItems: "center",
+    marginTop: 12,
+    },
+    loginButtonText:{
+        color:"#FFFFFF",
+        fontSize:14,
+        fontWeight:"600"
+    },
+     ErrorText: {
+    color: "#DC2626",
+    fontSize: 14,
+    textAlign: "center",
+    marginTop: 12,
+  },
+
+  registerText: {
+    color: "#111827",
+    fontSize: 15,
+    fontWeight: "600",
+    textAlign: "center",
+    marginTop: 24,
+  },
+
+
+    
+})
