@@ -11,7 +11,7 @@
       "icon": "./assets/expo.icon"
     },
     "android": {
-      "package":"com.mytodoapp.com",
+      "package": "com.mytodoapp.com",
       "adaptiveIcon": {
         "backgroundColor": "#E6F4FE",
         "foregroundImage": "./assets/images/android-icon-foreground.png",
@@ -38,6 +38,12 @@
     "experiments": {
       "typedRoutes": true,
       "reactCompiler": true
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "8840357d-66b4-4e4e-92b6-1b00995b7cd1"
+      }
     }
   }
 }
