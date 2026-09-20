@@ -40,7 +40,7 @@ export default function LoginScreen() {
 
       <TouchableOpacity onPress={login}>
         <Text>
-            Login
+            Login Screen
         </Text>
       </TouchableOpacity>
       {message ?<Text>{message}</Text>:null}
