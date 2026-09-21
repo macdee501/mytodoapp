@@ -170,13 +170,15 @@ export default function HomeScreen() {
    * Show a temporary loading screen while Appwrite
    * checks the user's authentication session.
    */
-  if (loading) {
-    return (
-      <View>
-        <Text>Loading...</Text>
-      </View>
-    );
-  }
+if (loading) {
+  return (
+    <View style={styles.loadingContainer}>
+      <Text style={styles.loadingText}>
+        Loading...
+      </Text>
+    </View>
+  );
+}
 
  return (
   <View style={styles.container}>
@@ -196,7 +198,7 @@ export default function HomeScreen() {
       <TextInput
         style={styles.input}
         placeholder="Enter a task..."
-        placeholderTextColor="#9CA3AF"
+        placeholderTextColor="#A1A1AA"
         value={task}
         onChangeText={setTask}
       />
@@ -225,6 +227,7 @@ export default function HomeScreen() {
     <TouchableOpacity
       style={styles.logoutButton}
       onPress={logout}
+      activeOpacity={0.7}
     >
       <Text style={styles.logoutText}>
         Logout
@@ -236,63 +239,70 @@ export default function HomeScreen() {
 
 const styles = StyleSheet.create({
   /**
-   * Main screen container.
+   * Main screen.
+   *
+   * Uses a very light gray instead of pure white so
+   * white inputs and buttons stand out slightly.
    */
   container: {
     flex: 1,
-    backgroundColor: "#F5F7FA",
+    backgroundColor: "#F4F4F5",
     paddingHorizontal: 24,
     paddingTop: 80,
     paddingBottom: 30,
   },
 
   /**
-   * Small greeting displayed above the page title.
+   * Greeting above the main heading.
    */
   welcome: {
-    fontSize: 16,
-    color: "#6B7280",
-    marginBottom: 6,
+    fontSize: 15,
+    color: "#71717A",
+    marginBottom: 8,
   },
 
   /**
-   * Main heading.
+   * Main page heading.
    */
   title: {
-    fontSize: 36,
+    fontSize: 38,
     fontWeight: "bold",
-    color: "#111827",
+    color: "#111111",
+    letterSpacing: -1,
   },
 
   /**
-   * Supporting text underneath the title.
+   * Supporting text below the title.
    */
   subtitle: {
     fontSize: 16,
-    color: "#6B7280",
+    color: "#71717A",
     marginTop: 6,
-    marginBottom: 28,
+    marginBottom: 30,
   },
 
   /**
-   * Input used to enter a new task.
+   * New task input.
    */
   input: {
     backgroundColor: "#FFFFFF",
     borderWidth: 1,
-    borderColor: "#E5E7EB",
+    borderColor: "#D4D4D8",
     borderRadius: 12,
     paddingHorizontal: 16,
-    paddingVertical: 15,
+    paddingVertical: 16,
     fontSize: 16,
-    color: "#111827",
+    color: "#111111",
   },
 
   /**
-   * Main action button used to create a task.
+   * Main action.
+   *
+   * Solid black makes Add Task the strongest
+   * action on the screen.
    */
   addButton: {
-    backgroundColor: "#2563EB",
+    backgroundColor: "#111111",
     borderRadius: 12,
     paddingVertical: 16,
     alignItems: "center",
@@ -306,12 +316,15 @@ const styles = StyleSheet.create({
   },
 
   /**
-   * Secondary button used to open the task list.
+   * Secondary action.
+   *
+   * White background with a subtle dark border keeps
+   * it visually quieter than Add Task.
    */
   tasksButton: {
     backgroundColor: "#FFFFFF",
     borderWidth: 1,
-    borderColor: "#2563EB",
+    borderColor: "#18181B",
     borderRadius: 12,
     paddingVertical: 16,
     alignItems: "center",
@@ -319,14 +332,13 @@ const styles = StyleSheet.create({
   },
 
   tasksButtonText: {
-    color: "#2563EB",
+    color: "#18181B",
     fontSize: 16,
     fontWeight: "600",
   },
 
   /**
-   * Pushes the logout option toward the bottom
-   * of the screen.
+   * Logout stays at the bottom of the page.
    */
   logoutButton: {
     marginTop: "auto",
@@ -334,9 +346,23 @@ const styles = StyleSheet.create({
     paddingVertical: 14,
   },
 
+  /**
+   * Gray instead of red keeps the monochrome theme.
+   */
   logoutText: {
-    color: "#DC2626",
-    fontSize: 16,
+    color: "#71717A",
+    fontSize: 15,
     fontWeight: "500",
   },
+  loadingContainer: {
+  flex: 1,
+  backgroundColor: "#F4F4F5",
+  justifyContent: "center",
+  alignItems: "center",
+},
+
+loadingText: {
+  color: "#71717A",
+  fontSize: 16,
+},
 });

@@ -240,7 +240,7 @@ const styles = StyleSheet.create({
    */
   container: {
     flex: 1,
-    backgroundColor: "#F5F7FA",
+    backgroundColor: "#F4F4F5",
     paddingHorizontal: 24,
     paddingTop: 70,
     paddingBottom: 30,
@@ -256,60 +256,62 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 36,
     fontWeight: "bold",
-    color: "#111827",
+    color: "#111111",
+    letterSpacing: -1,
   },
 
   subtitle: {
     fontSize: 16,
-    color: "#6B7280",
+    color: "#71717A",
     marginTop: 4,
   },
 
   /**
-   * Allows the task cards to scroll
-   * when the list becomes long.
+   * Allows the task list to scroll
+   * when there are many tasks.
    */
   taskList: {
     flex: 1,
   },
 
   /**
-   * Individual task card.
+   * Standard task card.
    */
   taskCard: {
     backgroundColor: "#FFFFFF",
     borderWidth: 1,
-    borderColor: "#E5E7EB",
+    borderColor: "#E4E4E7",
     borderRadius: 14,
     padding: 18,
     marginBottom: 14,
   },
 
   /**
-   * Slightly muted appearance for
-   * completed tasks.
+   * Completed tasks look slightly muted
+   * while still remaining visible.
    */
   completedCard: {
-    backgroundColor: "#F9FAFB",
+    backgroundColor: "#F4F4F5",
+    borderColor: "#D4D4D8",
   },
 
   taskTitle: {
     fontSize: 18,
     fontWeight: "600",
-    color: "#111827",
+    color: "#111111",
   },
 
   /**
-   * Completed titles are crossed out
-   * while remaining visible for history.
+   * Completed task titles are crossed out
+   * and shown in muted gray.
    */
   completedTitle: {
     textDecorationLine: "line-through",
-    color: "#9CA3AF",
+    color: "#A1A1AA",
   },
 
   /**
-   * Shared status styling.
+   * Shared task status styling.
    */
   status: {
     fontSize: 14,
@@ -318,19 +320,18 @@ const styles = StyleSheet.create({
   },
 
   activeStatus: {
-    color: "#6B7280",
+    color: "#71717A",
   },
 
   completedStatus: {
-    color: "#16A34A",
+    color: "#52525B",
   },
 
   /**
-   * Primary action for completing
-   * an active task.
+   * Primary action used to complete a task.
    */
   completeButton: {
-    backgroundColor: "#2563EB",
+    backgroundColor: "#111111",
     borderRadius: 10,
     paddingVertical: 12,
     alignItems: "center",
@@ -343,17 +344,17 @@ const styles = StyleSheet.create({
   },
 
   /**
-   * Completed tasks get a secondary-style
-   * button for restoring them.
+   * Completed tasks use a secondary button
+   * for changing them back to incomplete.
    */
   incompleteButton: {
     backgroundColor: "#FFFFFF",
     borderWidth: 1,
-    borderColor: "#2563EB",
+    borderColor: "#18181B",
   },
 
   incompleteButtonText: {
-    color: "#2563EB",
+    color: "#18181B",
   },
 
   /**
@@ -363,7 +364,7 @@ const styles = StyleSheet.create({
   emptyContainer: {
     backgroundColor: "#FFFFFF",
     borderWidth: 1,
-    borderColor: "#E5E7EB",
+    borderColor: "#E4E4E7",
     borderRadius: 14,
     padding: 24,
     alignItems: "center",
@@ -372,21 +373,23 @@ const styles = StyleSheet.create({
   emptyTitle: {
     fontSize: 18,
     fontWeight: "600",
-    color: "#111827",
+    color: "#111111",
   },
 
   emptyText: {
     fontSize: 14,
-    color: "#6B7280",
+    color: "#71717A",
     marginTop: 6,
+    textAlign: "center",
   },
 
   /**
-   * Back button at the bottom of the screen.
+   * Back button at the bottom.
    */
   backButton: {
+    backgroundColor: "#FFFFFF",
     borderWidth: 1,
-    borderColor: "#D1D5DB",
+    borderColor: "#D4D4D8",
     borderRadius: 12,
     paddingVertical: 14,
     alignItems: "center",
@@ -394,7 +397,7 @@ const styles = StyleSheet.create({
   },
 
   backButtonText: {
-    color: "#374151",
+    color: "#18181B",
     fontSize: 16,
     fontWeight: "600",
   },
@@ -404,13 +407,13 @@ const styles = StyleSheet.create({
    */
   loadingContainer: {
     flex: 1,
-    backgroundColor: "#F5F7FA",
+    backgroundColor: "#F4F4F5",
     alignItems: "center",
     justifyContent: "center",
   },
 
   loadingText: {
     fontSize: 16,
-    color: "#6B7280",
+    color: "#71717A",
   },
 });
