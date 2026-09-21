@@ -10,6 +10,7 @@ export default function register() {
     const [name,setName] = useState("");
     const [email,setEmail] = useState("");
     const [password,setPassword] = useState("");
+    const [message,setMessage] = useState("");
 
     // asynchrous function that runs while the button is pressed
     async function handleRegister() {
@@ -45,28 +46,49 @@ export default function register() {
 
         catch(error:any){
             Alert.alert("Registration",error.message);
+            setMessage(error.message);
         }
         
     }
     
   return (
     <View style={styles.container}>
+        {/* Header */}
+        <View style={styles.header}>
+
       <Text style={styles.title}>
         Create Account
       </Text>
+
+      <Text style={styles.subtitle}>
+        Sign Up to start managing your tasks
+      </Text>
+        </View>
+
+
+        {/* Form */}
+        <View style={styles.form}>
 
       <TextInput style={styles.input} placeholder='Name' value={name} onChangeText={setName}/>
       <TextInput style={styles.input} placeholder='Email' value={email} onChangeText={setEmail} keyboardType='email-address' autoCapitalize='none'/>
       <TextInput style={styles.input} placeholder='Password' value={password} onChangeText={setPassword} secureTextEntry/>
 
-      <TouchableOpacity style={styles.button} onPress={handleRegister}>
+      <TouchableOpacity style={styles.button} onPress={handleRegister} activeOpacity={0.8}>
         <Text style={styles.buttonText}>
-            Register
+            Create Account
         </Text>
       </TouchableOpacity>
-      <Link href="/login">
+
+      {message ? (<Text style={styles.errorText}>{message}</Text>): null}
+      {/* Login Link */}
+      <View style={styles.loginContainer}>
+
+      <Link href="/login" style={styles.loginLink}>
       Already  have an account? Login
       </Link>
+      </View>
+        </View>
+
     </View>
   )
 }
@@ -75,33 +97,60 @@ const styles = StyleSheet.create({
     container:{
         flex:1,
         justifyContent:"center",
-        padding:24,
+        paddingHorizontal:24,
+        backgroundColor:"#F5F7FA",
+    },
+    header:{
+
+        marginBottom:32,
     },
     title:{
-        fontSize:32,
+        fontSize:36,
         fontWeight:"bold",
-        marginBottom:24,
+        color:"#111827",
+    },
+    subtitle:{
+
+        fontSize:16,
+        color:"#6B7280",
+        marginTop:8,
+    },
+    form:{
+        width:"100%"
     },
     input:{
         borderWidth:1,
-        borderColor:"#cccccc",
-        borderRadius:8,
-        padding:14,
+        borderColor:"#FFFFFF",
+        borderRadius:12,
+        paddingHorizontal:16,
+        paddingVertical:15,
         marginBottom:12,
         fontSize:16,
+        color:"#111827",
 
     },
     button:{
         backgroundColor:"#000000",
-        padding:16,
-        borderRadius:8,
+        borderRadius:12,
+        paddingVertical:16,
         alignItems:"center",
-        marginTop:8,
+        marginTop:24,
     },
     buttonText:{
         color:"#ffffff",
         fontSize:16,
         fontWeight:"bold",
+    },
+    errorText:{
+        color:"#DC2626",
+        fontSize:14,
+        textAlign:"center",
+        marginTop:14
+    },
+    loginContainer:{
+        flexDirection:"row",
+        justifyContent:"center",
+        marginTop:24
     }
 
 })
